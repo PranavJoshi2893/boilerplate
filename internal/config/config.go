@@ -13,6 +13,8 @@ type Config struct {
 	DBName     string
 	DBPassword string
 	DBSSLMode  string
+	DBHost     string
+	DBPort     string
 }
 
 func Load() (*Config, error) {
@@ -27,6 +29,8 @@ func Load() (*Config, error) {
 		DBUser:     os.Getenv("POSTGRES_USER"),
 		DBName:     os.Getenv("POSTGRES_DB"),
 		DBPassword: os.Getenv("POSTGRES_PASSWORD"),
-		DBSSLMode:  os.Getenv("disable"),
+		DBSSLMode:  os.Getenv("POSTGRES_SSLMODE"),
+		DBHost:     os.Getenv("POSTGRES_HOST"),
+		DBPort:     os.Getenv("POSTGRES_PORT"),
 	}, nil
 }
