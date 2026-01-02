@@ -2,6 +2,7 @@ package server
 
 import (
 	"context"
+	"database/sql"
 	"fmt"
 	"net/http"
 	"os"
@@ -14,9 +15,10 @@ import (
 
 type Server struct {
 	httpServer *http.Server
+	db         *sql.DB
 }
 
-func NewServer(cfg *config.Config, handler http.Handler) *Server {
+func NewServer(cfg *config.Config, db *sql.DB, handler http.Handler) *Server {
 	return &Server{
 		httpServer: &http.Server{
 			Addr:              cfg.ServerPort,
@@ -26,6 +28,7 @@ func NewServer(cfg *config.Config, handler http.Handler) *Server {
 			WriteTimeout:      time.Second * 30,
 			IdleTimeout:       time.Second * 60,
 		},
+		db: db,
 	}
 }
 

@@ -9,6 +9,10 @@ import (
 
 type Config struct {
 	ServerPort string
+	DBUser     string
+	DBName     string
+	DBPassword string
+	DBSSLMode  string
 }
 
 func Load() (*Config, error) {
@@ -20,5 +24,9 @@ func Load() (*Config, error) {
 
 	return &Config{
 		ServerPort: os.Getenv("PORT"),
+		DBUser:     os.Getenv("POSTGRES_USER"),
+		DBName:     os.Getenv("POSTGRES_DB"),
+		DBPassword: os.Getenv("POSTGRES_PASSWORD"),
+		DBSSLMode:  os.Getenv("disable"),
 	}, nil
 }
